@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "471990509963",
+    "project_id": "pennytracker-4adb8",
+    "storage_bucket": "pennytracker-4adb8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:471990509963:android:85a1ca9b2474bb31cb0f8e",
+        "android_client_info": {
+          "package_name": "com.example.pt"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBJPXo0wJlnXKobIUye2GKa5QlxkgzMiI0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
