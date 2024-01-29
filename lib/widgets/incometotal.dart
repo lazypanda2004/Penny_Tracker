@@ -1,19 +1,24 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:pt/data/get_income.dart';
 
-class categorytotal extends StatefulWidget {
-  categorytotal({super.key, required this.title, required this.total});
+class incometotal extends StatefulWidget {
+  incometotal({super.key, required this.title});
 
   final String title;
-  final int total;
+ 
 
   @override
-  State<categorytotal> createState() {
-    return _categorytotalstate();
+  State<incometotal> createState() {
+    return _incometotalstate();
   }
 }
 
-class _categorytotalstate extends State<categorytotal> {
+class _incometotalstate extends State<incometotal> {
   // Create a method to build the content widgets with the given context
+  
+  User user = FirebaseAuth.instance.currentUser!;
+  String id = FirebaseAuth.instance.currentUser!.uid;
   Widget buildContentCard(
       BuildContext context, Color backgroundColor, Color textColor) {
     return Card(
@@ -48,12 +53,7 @@ class _categorytotalstate extends State<categorytotal> {
               padding: const EdgeInsets.only(left: 15),
               child: Row(
                 children: [
-                  Text(
-                    '₹${widget.total}',
-                    style: Theme.of(context).textTheme.headlineMedium!.copyWith(
-                          color: textColor,
-                        ),
-                  ),
+                  Income(documentid: id, color: textColor)
                 ],
               ),
             ),

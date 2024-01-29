@@ -1,11 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-class Expense extends StatelessWidget {
+class Expens extends StatelessWidget {
   final String documentid;
 
   final Color color;
-  Expense({super.key, required this.documentid, required this.color});
+  Expens({super.key, required this.documentid, required this.color});
   @override
   Widget build(BuildContext context) {
     CollectionReference users = FirebaseFirestore.instance.collection('users');
@@ -18,9 +18,8 @@ class Expense extends StatelessWidget {
 
           return Text(
             '₹ ${data['Expense']}',
-            style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+            style: Theme.of(context).textTheme.headlineMedium!.copyWith(
                   color: color,
-                  fontSize: 22,
                 ),
           );
         }

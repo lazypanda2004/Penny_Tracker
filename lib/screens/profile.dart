@@ -5,10 +5,11 @@ import 'package:pt/data/get_user_name.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:pt/data/image_profile.dart';
 import 'package:pt/screens/edit_profile.dart';
+import 'package:pt/screens/password_change.dart';
 import 'package:pt/screens/privacy.dart';
 
 class profiletab extends StatefulWidget {
-  profiletab({super.key});
+  const profiletab({super.key});
   @override
   State<profiletab> createState() {
     return _profiletabstate();
@@ -130,14 +131,7 @@ class _profiletabstate extends State<profiletab> {
                 height: 20,
               ),
               InkWell(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) {
-                      return editprof(id: id);
-                    }),
-                  );
-                },
+                onTap: () {},
                 child: Material(
                   color: Colors.transparent,
                   elevation: 0,
@@ -171,7 +165,14 @@ class _profiletabstate extends State<profiletab> {
                                 ),
                           ),
                           IconButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) {
+                                  return editprof(id: id);
+                                }),
+                              );
+                            },
                             icon: Icon(
                               Icons.chevron_right_rounded,
                               color: Colors.white,
@@ -188,7 +189,16 @@ class _profiletabstate extends State<profiletab> {
                 height: 20,
               ),
               InkWell(
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) {
+                      return passwordchange(
+                        id: id,
+                      );
+                    }),
+                  );
+                },
                 child: Material(
                   color: Colors.transparent,
                   elevation: 0,

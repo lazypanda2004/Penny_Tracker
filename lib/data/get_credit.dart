@@ -18,9 +18,8 @@ class Credit extends StatelessWidget {
 
           return Text(
             '₹ ${data['Credit']}',
-            style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+            style: Theme.of(context).textTheme.headlineMedium!.copyWith(
                   color: color,
-                  fontSize: 22,
                 ),
           );
         }

@@ -67,6 +67,15 @@ class _Authscreenstate extends State<Authscreen> {
           'email': _enteredEmail,
           'image_url': imageUrl,
         });
+        ScaffoldMessenger.of(context).clearSnackBars();
+      const  HomeTab();
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Account created plz continue'),
+          ),
+        );
+        ScaffoldMessenger.of(context).clearSnackBars();
+        
       }
     } on FirebaseAuthException catch (error) {
       if (error.code == 'email-already-in-use') {
@@ -78,15 +87,6 @@ class _Authscreenstate extends State<Authscreen> {
           content: Text(error.message ?? 'Authentication failed.'),
         ),
       );
-      ScaffoldMessenger.of(context).clearSnackBars();
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text('Account created plz continue'),
-        ),
-      );
-      ScaffoldMessenger.of(context).clearSnackBars();
-
-      HomeTab();
     }
   }
 
@@ -106,7 +106,7 @@ class _Authscreenstate extends State<Authscreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Padding(
-                          padding: EdgeInsets.fromLTRB(23, 35, 23, 0),
+                          padding:const EdgeInsets.fromLTRB(23, 35, 23, 0),
                           child: Row(
                             children: [
                               Image.asset(
@@ -116,7 +116,7 @@ class _Authscreenstate extends State<Authscreen> {
                                 fit: BoxFit.fitWidth,
                               ),
                               Padding(
-                                padding: EdgeInsets.symmetric(
+                                padding:const EdgeInsets.symmetric(
                                   horizontal: 20,
                                 ),
                                 child: Text(
@@ -137,7 +137,7 @@ class _Authscreenstate extends State<Authscreen> {
                             ],
                           ),
                         ),
-                        SizedBox(
+                       const SizedBox(
                           height: 25,
                         ),
                         Padding(
@@ -153,7 +153,7 @@ class _Authscreenstate extends State<Authscreen> {
                                 ),
                           ),
                         ),
-                        SizedBox(
+                       const SizedBox(
                           height: 6,
                         ),
                         Padding(
@@ -165,7 +165,7 @@ class _Authscreenstate extends State<Authscreen> {
                               mainAxisSize: MainAxisSize.min,
                               children: [
                                 TextFormField(
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     color: Colors.white,
                                   ),
                                   autocorrect: false,
@@ -211,7 +211,7 @@ class _Authscreenstate extends State<Authscreen> {
                                     value = '';
                                   },
                                 ),
-                                SizedBox(
+                               const SizedBox(
                                   height: 15,
                                 ),
                                 TextFormField(
@@ -220,16 +220,16 @@ class _Authscreenstate extends State<Authscreen> {
                                   obscureText: isobscure,
                                   textCapitalization: TextCapitalization.none,
                                   decoration: InputDecoration(
-                                    suffixIcon: IconButton(
-                                      onPressed: () {
-                                        setState(() {
-                                          isobscure = !isobscure;
-                                        });
-                                      },
-                                      icon: Icon(isobscure
-                                          ? Icons.visibility
-                                          : Icons.visibility_off),
-                                    ),
+                                    // suffixIcon: IconButton(
+                                    //   onPressed: () {
+                                    //     setState(() {
+                                    //       isobscure = !isobscure;
+                                    //     });
+                                    //   },
+                                    //   icon: Icon(isobscure
+                                    //       ? Icons.visibility
+                                    //       : Icons.visibility_off),
+                                    // ),
                                     labelStyle: Theme.of(context)
                                         .textTheme
                                         .bodySmall!
@@ -267,7 +267,7 @@ class _Authscreenstate extends State<Authscreen> {
                                     value = '';
                                   },
                                 ),
-                                SizedBox(
+                               const SizedBox(
                                   height: 24,
                                 ),
                                 if (_isAuthenticating)
@@ -305,7 +305,7 @@ class _Authscreenstate extends State<Authscreen> {
                                     ),
                                   ],
                                 ),
-                                SizedBox(
+                               const SizedBox(
                                   height: 24,
                                 ),
                                 Center(
@@ -335,7 +335,7 @@ class _Authscreenstate extends State<Authscreen> {
                                                   color: Colors.white,
                                                 ),
                                           ),
-                                          SizedBox(
+                                         const SizedBox(
                                             width: 18,
                                           ),
                                           Text(
@@ -360,7 +360,7 @@ class _Authscreenstate extends State<Authscreen> {
                                     ),
                                   ),
                                 ),
-                                SizedBox(
+                              const  SizedBox(
                                   height: 70,
                                 ),
                               ],
@@ -387,7 +387,7 @@ class _Authscreenstate extends State<Authscreen> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        SizedBox(
+                       const SizedBox(
                           height: 25,
                         ),
                         Padding(
@@ -403,7 +403,7 @@ class _Authscreenstate extends State<Authscreen> {
                                 ),
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 15,
                         ),
                         Center(
@@ -422,7 +422,7 @@ class _Authscreenstate extends State<Authscreen> {
                               mainAxisSize: MainAxisSize.min,
                               children: [
                                 TextFormField(
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     color: Colors.white,
                                   ),
                                   autocorrect: false,
@@ -466,11 +466,11 @@ class _Authscreenstate extends State<Authscreen> {
                                     value = '';
                                   },
                                 ),
-                                SizedBox(
+                               const SizedBox(
                                   height: 8,
                                 ),
                                 TextFormField(
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     color: Colors.white,
                                   ),
                                   autocorrect: false,
@@ -516,7 +516,7 @@ class _Authscreenstate extends State<Authscreen> {
                                     value = '';
                                   },
                                 ),
-                                SizedBox(
+                               const SizedBox(
                                   height: 8,
                                 ),
                                 TextFormField(
@@ -525,16 +525,17 @@ class _Authscreenstate extends State<Authscreen> {
                                   obscureText: isobscure,
                                   textCapitalization: TextCapitalization.none,
                                   decoration: InputDecoration(
-                                    suffixIcon: IconButton(
-                                      onPressed: () {
-                                        setState(() {
-                                          isobscure = !isobscure;
-                                        });
-                                      },
-                                      icon: Icon(isobscure
-                                          ? Icons.visibility
-                                          : Icons.visibility_off),
-                                    ),
+                                    // suffixIcon: IconButton(
+                                    //   onPressed: () {
+                                    //     setState(() {
+                                    //       isobscure = !isobscure;
+                                    //     });
+                                    //   },
+                                    
+                                    //   // icon: Icon(isobscure
+                                    //   //     ? Icons.visibility
+                                    //   //     : Icons.visibility_off),
+                                    // ),
                                     labelStyle: Theme.of(context)
                                         .textTheme
                                         .bodySmall!
@@ -571,10 +572,10 @@ class _Authscreenstate extends State<Authscreen> {
                                     _enteredPassword = value!;
                                   },
                                 ),
-                                SizedBox(
+                               const SizedBox(
                                   height: 8,
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   height: 8,
                                 ),
                                 if (_isAuthenticating)
@@ -618,7 +619,7 @@ class _Authscreenstate extends State<Authscreen> {
                                     ),
                                   ],
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   height: 16,
                                 ),
                                 Center(
@@ -656,7 +657,7 @@ class _Authscreenstate extends State<Authscreen> {
                                                       .secondary,
                                                 ),
                                           ),
-                                          SizedBox(
+                                         const SizedBox(
                                             width: 18,
                                           ),
                                           Text(
@@ -674,7 +675,7 @@ class _Authscreenstate extends State<Authscreen> {
                                     ),
                                   ),
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   height: 24,
                                 ),
                               ],

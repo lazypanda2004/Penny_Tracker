@@ -4,7 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:pt/data/get_income.dart';
 import 'package:pt/data/get_user_name.dart';
 import 'package:pt/data/image_profile.dart';
-import 'package:pt/widgets/categorytotal.dart';
+import 'package:pt/widgets/Debittotal.dart';
+import 'package:pt/widgets/credittoatal.dart';
+import 'package:pt/widgets/expensetotal.dart';
+import 'package:pt/widgets/incometotal.dart';
 import 'package:pt/widgets/creditcard.dart';
 
 class HomeTab extends StatefulWidget {
@@ -112,10 +115,10 @@ class _HomeTabState extends State<HomeTab> {
                 vertical: 10,
               ),
               children: [
-                categorytotal(title: 'Income', total: 3000),
-                categorytotal(title: 'Expense', total: 20000),
-                categorytotal(title: 'Credit', total: 1000),
-                categorytotal(title: 'Debit', total: 500),
+                incometotal(title: 'Income'),
+                expensetotal(title: 'Expense'),
+                credittotal(title: 'Credit'),
+                debittotal(title: 'Debit'),
               ],
             ),
           ),
