@@ -38,7 +38,7 @@ class _profiletabstate extends State<profiletab> {
     return SafeArea(
       child: Scaffold(
         body: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 15, vertical: 8),
+          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 8),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -52,13 +52,13 @@ class _profiletabstate extends State<profiletab> {
                           .colorScheme
                           .background
                           .withOpacity(0.5),
-                      offset: Offset(0, 6),
+                      offset: const Offset(0, 6),
                       blurRadius: 12,
                       spreadRadius: 6,
                     ),
                   ],
                   borderRadius: BorderRadius.circular(15),
-                  gradient: LinearGradient(
+                  gradient: const LinearGradient(
                     colors: [
                       Color.fromARGB(255, 18, 201, 146),
                       Color.fromARGB(255, 255, 220, 156)
@@ -68,7 +68,7 @@ class _profiletabstate extends State<profiletab> {
                   ),
                 ),
                 child: Padding(
-                    padding: EdgeInsets.fromLTRB(20, 30, 20, 0),
+                    padding: const EdgeInsets.fromLTRB(20, 30, 20, 0),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -78,7 +78,7 @@ class _profiletabstate extends State<profiletab> {
                               id: id,
                               radius: 35,
                             ),
-                            Spacer(),
+                            const Spacer(),
                             Card(
                               elevation: 2,
                               shape: RoundedRectangleBorder(
@@ -95,7 +95,7 @@ class _profiletabstate extends State<profiletab> {
                                   onPressed: () {
                                     FirebaseAuth.instance.signOut();
                                   },
-                                  icon: Icon(
+                                  icon: const Icon(
                                     Icons.exit_to_app,
                                     color: Colors.white,
                                   ),
@@ -104,21 +104,21 @@ class _profiletabstate extends State<profiletab> {
                             ),
                           ],
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 20,
                         ),
                         getusername(
                           documentid: id,
                           color: Colors.white,
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 15,
                         ),
                         email(documentid: id, color: Colors.white)
                       ],
                     )),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Text(
@@ -127,11 +127,18 @@ class _profiletabstate extends State<profiletab> {
                     fontWeight: FontWeight.bold,
                     color: Theme.of(context).colorScheme.onBackground),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               InkWell(
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) {
+                      return editprof(id: id);
+                    }),
+                  );
+                },
                 child: Material(
                   color: Colors.transparent,
                   elevation: 0,
@@ -165,15 +172,8 @@ class _profiletabstate extends State<profiletab> {
                                 ),
                           ),
                           IconButton(
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(builder: (context) {
-                                  return editprof(id: id);
-                                }),
-                              );
-                            },
-                            icon: Icon(
+                            onPressed: () {},
+                            icon: const Icon(
                               Icons.chevron_right_rounded,
                               color: Colors.white,
                               size: 20,
@@ -185,7 +185,7 @@ class _profiletabstate extends State<profiletab> {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               InkWell(
@@ -217,7 +217,7 @@ class _profiletabstate extends State<profiletab> {
                       ),
                     ),
                     child: Padding(
-                      padding: EdgeInsets.fromLTRB(16, 0, 4, 0),
+                      padding: const EdgeInsets.fromLTRB(16, 0, 4, 0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -233,7 +233,7 @@ class _profiletabstate extends State<profiletab> {
                           ),
                           IconButton(
                             onPressed: () {},
-                            icon: Icon(
+                            icon: const Icon(
                               Icons.chevron_right_rounded,
                               color: Colors.white,
                               size: 20,
@@ -245,7 +245,7 @@ class _profiletabstate extends State<profiletab> {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               InkWell(
@@ -253,7 +253,7 @@ class _profiletabstate extends State<profiletab> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) {
-                      return privacy();
+                      return const privacy();
                     }),
                   );
                 },
@@ -275,7 +275,7 @@ class _profiletabstate extends State<profiletab> {
                       ),
                     ),
                     child: Padding(
-                      padding: EdgeInsets.fromLTRB(16, 0, 4, 0),
+                      padding: const EdgeInsets.fromLTRB(16, 0, 4, 0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -291,7 +291,7 @@ class _profiletabstate extends State<profiletab> {
                           ),
                           IconButton(
                             onPressed: () {},
-                            icon: Icon(
+                            icon: const Icon(
                               Icons.chevron_right_rounded,
                               color: Colors.white,
                               size: 20,
