@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:pt/screens/auth.dart';
 
 class passwordchange extends StatefulWidget {
   passwordchange({super.key, required this.id});
@@ -14,28 +15,40 @@ class _passwordchangestate extends State<passwordchange> {
   final _form = GlobalKey<FormState>();
   var isobscure = true;
   var _newpassword = '';
-  void _change() async {
-    final isvalid = _form.currentState!.validate();
+  var _oldpassword = '';
+  var emaill = '';
+  var curuser = FirebaseAuth.instance.currentUser;
 
+  User user = FirebaseAuth.instance.currentUser!;
+  String id = FirebaseAuth.instance.currentUser!.uid;
+
+  _change({email, oldpassword, newpassword}) async {
+    final isvalid = _form.currentState!.validate();
     if (!isvalid) {
       return;
     }
     _form.currentState!.save();
-    User? user = await FirebaseAuth.instance.currentUser;
-    try {
-      user!.updatePassword(_newpassword).then((value) {
-        print("Successfully changed password");
-      }).catchError((error) {
-        print("Password can't be changed" + error.toString());
-        ScaffoldMessenger.of(context).clearSnackBars();
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-            content: Text('Password cannot be changed' + error.toString())));
-      });
-      setState(() {
-        FirebaseAuth.instance.signOut();
-      });
-    } catch (e) {
-      print('wrong');
+    var cred =
+        EmailAuthProvider.credential(email: emaill, password: _oldpassword);
+    await curuser!.reauthenticateWithCredential(cred).then((value) async {
+      await curuser!.updatePassword(_newpassword);
+      FirebaseAuth.instance.signOut();
+    }).catchError((error) {
+      ScaffoldMessenger.of(context).clearSnackBars();
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(error.message ?? 'Password Change failed.'),
+        ),
+      );
+    });
+    if (mounted) {
+      Navigator.of(context);
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) {
+          return const Authscreen();
+        }),
+      );
     }
   }
 
@@ -65,6 +78,95 @@ class _passwordchangestate extends State<passwordchange> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisSize: MainAxisSize.min,
                   children: [
+                    TextFormField(
+                      style: TextStyle(color: Colors.white),
+                      autocorrect: false,
+                      obscureText: isobscure,
+                      keyboardType: TextInputType.emailAddress,
+                      textCapitalization: TextCapitalization.none,
+                      decoration: InputDecoration(
+                        labelStyle: Theme.of(context)
+                            .textTheme
+                            .bodySmall!
+                            .copyWith(
+                                color:
+                                    Theme.of(context).colorScheme.onBackground),
+                        hintText: 'Enter your Email',
+                        hintStyle: Theme.of(context)
+                            .textTheme
+                            .bodyMedium!
+                            .copyWith(
+                                color:
+                                    Theme.of(context).colorScheme.onBackground),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Theme.of(context).colorScheme.onBackground,
+                            width: 1,
+                          ),
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                      ),
+                      validator: (value) {
+                        if (value == null ||
+                            value.trim().isEmpty ||
+                            !value.contains('@')) {
+                          return 'Please enter a valid email address.';
+                        }
+                        return null;
+                      },
+                      onSaved: (value) {
+                        emaill = value!;
+                        value = '';
+                      },
+                    ),
+                    TextFormField(
+                      style: TextStyle(color: Colors.white),
+                      autocorrect: false,
+                      obscureText: isobscure,
+                      textCapitalization: TextCapitalization.none,
+                      decoration: InputDecoration(
+                        suffixIcon: IconButton(
+                          onPressed: () {
+                            setState(() {
+                              isobscure = !isobscure;
+                            });
+                          },
+                          icon: Icon(isobscure
+                              ? Icons.visibility
+                              : Icons.visibility_off),
+                        ),
+                        labelStyle: Theme.of(context)
+                            .textTheme
+                            .bodySmall!
+                            .copyWith(
+                                color:
+                                    Theme.of(context).colorScheme.onBackground),
+                        hintText: 'Enter your Old Password',
+                        hintStyle: Theme.of(context)
+                            .textTheme
+                            .bodyMedium!
+                            .copyWith(
+                                color:
+                                    Theme.of(context).colorScheme.onBackground),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Theme.of(context).colorScheme.onBackground,
+                            width: 1,
+                          ),
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                      ),
+                      validator: (value) {
+                        if (value == null || value.trim().length < 6) {
+                          return 'Old Password must be at least 6 characters long.';
+                        }
+                        return null;
+                      },
+                      onSaved: (value) {
+                        _oldpassword = value!;
+                        value = '';
+                      },
+                    ),
                     TextFormField(
                       style: TextStyle(color: Colors.white),
                       autocorrect: false,
@@ -121,13 +223,12 @@ class _passwordchangestate extends State<passwordchange> {
                         width: 267,
                         height: 50,
                         child: ElevatedButton(
-                          onPressed: _change,
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Theme.of(context)
-                                .colorScheme
-                                .primary
-                                .withOpacity(0.7),
-                          ),
+                          onPressed: () async {
+                            await _change(
+                                email: emaill,
+                                oldpassword: _oldpassword,
+                                newpassword: _newpassword);
+                          },
                           child: Text(
                             'Reset Password',
                             style: Theme.of(context)
